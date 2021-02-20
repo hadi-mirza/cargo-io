@@ -1,9 +1,8 @@
 import './App.css';
 import React from 'react'
-import Login from './components/auth/Login/Login'
-import SignUp from './components/auth/SignUp/SignUp'
-import { Route } from 'react-router-dom';
 import HomePage from './pages/Home/HomePage.jsx'
+import userService from './utils/userService';
+import Auth from './components/auth/Auth'
 
 class App extends React.Component {
   constructor() {
@@ -12,6 +11,11 @@ class App extends React.Component {
       user: null
     }
   }
+
+  handleSignup = () => {
+    this.setState({user: userService.getUser()});
+  }
+
   render() {
     return (
           <div className="App">
@@ -20,22 +24,8 @@ class App extends React.Component {
           <code>cargo.io</code>
         </p>
       </header>
-      {/* <Login />
-      <SignUp /> */}
       <HomePage />
-      <Route exact path='/signup' render={({ history }) => 
-            <SignUp
-              history={history}
-              handleSignup={this.handleSignup}
-              
-            />
-          }/>
-          <Route exact path='/login' render={({history}) => 
-            <Login
-              history={history}
-              handleLogin={this.handleLogin}
-            />
-          }/>
+      <Auth handleSignup={this.handleSignup}/>
     </div>
     )
   }
