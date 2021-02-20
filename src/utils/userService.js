@@ -1,4 +1,4 @@
-const BASE_URL = '/api/users/';
+const BASE_URL = '/api/';
 
 function signup(user) {
   return fetch(BASE_URL + 'signup', {
@@ -16,6 +16,17 @@ function signup(user) {
   });
 }
 
+function getUser() {
+  let token = localStorage.getItem('token')
+  if (token) {
+    const payload = JSON.parse(atob(token.split('.')[1]))
+    console.log(payload)
+    return payload.user
+  }
+  return null;
+}
+
 export default {
   signup,
+  getUser
 };

@@ -8,7 +8,7 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      user: null
+      user: userService.getUser()
     }
   }
 
@@ -25,7 +25,7 @@ class App extends React.Component {
         </p>
       </header>
       <HomePage />
-      <Auth handleSignup={this.handleSignup}/>
+      <Auth handleSignup={this.handleSignup} />
     </div>
     )
   }
