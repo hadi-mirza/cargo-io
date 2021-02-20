@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'); // Erase if already required
 
 // Declare the Schema of the Mongo model
-var pickupDetailSchema = new mongoose.Schema({
+var newRequestSchema = new mongoose.Schema({
     when:{
         type:String,
         required:true,
@@ -25,4 +25,4 @@ var pickupDetailSchema = new mongoose.Schema({
 });
 
 //Export the model
-module.exports = mongoose.model('Pickup Detail', pickupDetailSchema);
+module.exports = mongoose.model('newRequest', newRequestSchema);

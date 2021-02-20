@@ -1,16 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
 import React from 'react'
-import Login from './components/auth/Login/Login'
-import SignUp from './components/auth/SignUp/SignUp'
+import HomePage from './pages/Home/HomePage.jsx'
+import userService from './utils/userService';
+import Auth from './components/auth/Auth'
 
 class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      user: null
+      user: userService.getUser()
     }
   }
+
+  handleSignup = () => {
+    this.setState({user: userService.getUser()});
+  }
+
   render() {
     return (
           <div className="App">
@@ -19,8 +24,8 @@ class App extends React.Component {
           <code>cargo.io</code>
         </p>
       </header>
-      <Login />
-      <SignUp />
+      <HomePage />
+      <Auth handleSignup={this.handleSignup} />
     </div>
     )
   }
