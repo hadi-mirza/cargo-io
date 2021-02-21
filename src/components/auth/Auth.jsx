@@ -4,8 +4,8 @@ import { Route } from 'react-router-dom';
 import userService from '../../utils/userService'
 
 class Auth extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             message: null
         }
@@ -24,7 +24,7 @@ class Auth extends React.Component {
             <div>
             <p>This is auth component</p>
             <Route exact path='/signup' render={({history}) => 
-            <SignUp updateMessage={this.updateMessage} handleSignup={this.handleSignup} />
+            <SignUp history={history} updateMessage={this.updateMessage} handleSignup={this.handleSignup} />
             }/>
             </div>
         )

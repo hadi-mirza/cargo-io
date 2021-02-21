@@ -25,6 +25,7 @@ class App extends React.Component {
         </p>
       </header>
       <HomePage />
+      {console.log(this.state)}
       <Auth handleSignup={this.handleSignup} />
     </div>
     )
