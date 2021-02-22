@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import userService from '../../../utils/userService';
 
+
 class SignupForm extends Component {
 
   state = {
@@ -9,6 +10,7 @@ class SignupForm extends Component {
     email: '',
     password: '',
     passwordConf: '',
+    userType: 'consumer'
   };
   
 
@@ -57,6 +59,16 @@ class SignupForm extends Component {
           <div className="form-group">
             <div className="col-sm-12">
               <input type="password" className="form-control" placeholder="Confirm Password" value={this.state.passwordConf} name="passwordConf" onChange={this.handleChange} />
+            </div>
+          </div>
+          <div className="form-group">
+            <div className="col-sm-12">
+            <label for="userType">User Type:</label>
+              <select value={this.state.userType} name="userType" onChange={this.handleChange}>
+                <option value="consumer">Consumer</option>
+                <option value="driver">Driver</option>
+              </select>
+              {/* <input type="password" className="form-control" placeholder="User Type" value={this.state.userType} name="userType" onChange={this.handleChange} /> */}
             </div>
           </div>
           <div className="form-group">
