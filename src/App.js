@@ -14,7 +14,11 @@ class App extends React.Component {
 
   handleSignup = () => {
     this.setState({user: userService.getUser()});
-  }
+    }
+
+  handleLogin = () => {
+      this.setState({user: userService.getUser()})
+    }
 
   render() {
     return (
@@ -24,9 +28,8 @@ class App extends React.Component {
           <code>cargo.io</code>
         </p>
       </header>
-      <HomePage />
-      {console.log(this.state)}
-      <Auth handleSignup={this.handleSignup} />
+      <HomePage user={this.state.user}/>
+      <Auth handleSignup={this.handleSignup} handleLogin={this.handleLogin}/>
     </div>
     )
   }

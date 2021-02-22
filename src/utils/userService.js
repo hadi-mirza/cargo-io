@@ -26,7 +26,23 @@ function getUser() {
   return null;
 }
 
+async function login(creds) {
+  let endpoint = BASE_URL + 'login'
+  let fetchResult = await fetch(endpoint, {
+    method: 'POST',
+    headers: new Headers({'Content-Type': 'application/json'}),
+    body: JSON.stringify(creds)
+  })
+  if (fetchResult.ok) {
+    let result = await fetchResult.json()
+    localStorage.setItem('token', result.token)
+  } else {
+    throw new Error('An error occurred')
+  }
+}
+
 export default {
   signup,
-  getUser
+  getUser,
+  login
 };
