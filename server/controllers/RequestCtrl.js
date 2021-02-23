@@ -1,4 +1,7 @@
 let importDetails = require("../models/pickupDetail.js")
+let importUsers = require("../models/user")
+const jwt = require('jsonwebtoken')
+let SECRET = process.env.SECRET
 
 async function allRequests(req,res) {
     try {
@@ -26,16 +29,27 @@ async function seed(req,res) {
 
 async function addRequest(req,res) {
     console.log(req.body)
-    console.log(req.body.itemType)
+    let token = req.headers.authorization
+    token = token.split(' ')[1]
+    let decoded = jwt.verify(token, SECRET)
+    req.user = decoded.user._id
+    // console.log(req.user)
+
     try {
-        await importDetails.create({
+        let newRequest = await importDetails.create({
             when: req.body.when,
             pickupType: req.body.pickupType,
             itemType: req.body.itemType,  
             itemDesc: req.body.itemDesc,
             date: req.body.date
         })
+        newRequest.save()
         res.json({message: "added a pickup detail"})
+        let currentUser = await importUsers.findById(req.user)
+        currentUser.requests.push(newRequest._id)
+        // console.log(currentUser.requests)
+        currentUser.save()
+// 
     } catch(error) {
         console.log(error)
         res.json({error: 'error adding request'})
