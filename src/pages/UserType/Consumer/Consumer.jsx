@@ -49,7 +49,7 @@ constructor() {
     try {
       await requestService.addRequest(values);
       console.log('await functions have ran')
-      // this.props.history.push('/');
+      this.props.history.push('/');
     } catch (err) {
       console.log(err)
     }

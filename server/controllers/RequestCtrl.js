@@ -49,7 +49,6 @@ async function addRequest(req,res) {
         currentUser.requests.push(newRequest._id)
         // console.log(currentUser.requests)
         currentUser.save()
-// 
     } catch(error) {
         console.log(error)
         res.json({error: 'error adding request'})
