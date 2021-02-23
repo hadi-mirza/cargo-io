@@ -10,16 +10,16 @@ var newRequestSchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    itemType:{
+    itemType:[{
         type:String,
         required:true,
-    },
+    }],
     itemDesc:{
         type:String,
         required:true,
     },
     date:{
-        type:String,
+        type:Date,
         required:true,
     },
 });
