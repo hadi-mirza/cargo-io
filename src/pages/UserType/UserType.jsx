@@ -1,13 +1,16 @@
 import React from 'react'
+import Consumer from './Consumer/Consumer'
+// import Driver from './Driver/Driver'
+import { Link } from 'react-router-dom';
 
 function UserType(props) {
     let userType = props.userType === 'consumer' ?
     <div>
-        <h2>consumer</h2>
+        <Consumer />
     </div>
     :
     <div>
-        <h2>driver</h2>
+        {/* <Driver /> */}
     </div>;
 
     return (
