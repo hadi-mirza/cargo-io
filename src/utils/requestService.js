@@ -12,19 +12,6 @@ async function addRequest(newRequest) {
     }
 }
 
-// function addRequest(newRequest) {
-//     return fetch(BASE_URL + 'request-pickup', {
-//       method: 'POST',
-//       headers: new Headers({'Content-Type': 'application/json'}),
-//       body: JSON.stringify(newRequest)
-//     })
-//     .then(res => {
-//       if (res.ok) return res.json();
-//       // Probably a duplicate email
-//       throw new Error('error getting json');
-//     })
-//   }
-
  export default {
      addRequest
  }

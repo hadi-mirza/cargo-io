@@ -64,7 +64,7 @@ constructor() {
       <div>
         <Form
         labelCol={{
-          span: 10,
+          span: 18,
         }}
         wrapperCol={{
           span: 14,
