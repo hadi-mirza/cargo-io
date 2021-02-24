@@ -23,6 +23,7 @@ class Login extends Component {
       // Update to call login instead of signup
       await userService.login(this.state);
       await this.props.handleLogin()            //state change
+      await this.props.updateMessage("Successfully logged in")
       await this.props.history.push('/')        //redirect
     } catch (err) {
         console.log(err)

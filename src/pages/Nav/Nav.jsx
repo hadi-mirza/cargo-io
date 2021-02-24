@@ -8,7 +8,7 @@ function Nav(props) {
         <Menu theme="dark" mode="horizontal" >
         <Menu.Item key="1"><Link to='/request-pickup'>Request Pickup</Link></Menu.Item>
         <Menu.Item key="2"><Link to='#'>{props.user.name}'s Profile</Link></Menu.Item>
-        <Menu.Item key="3" id="profile">Logout</Menu.Item>
+        <Menu.Item key="3" id="profile"><Link to="" onClick={props.handleLogout}>Logout</Link></Menu.Item>
         </Menu>
     </div>
     :
