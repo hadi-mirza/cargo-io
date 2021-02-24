@@ -1,11 +1,10 @@
 import "./App.css";
 import React from "react";
 import userService from "./utils/userService";
-import Auth from "./components/auth/Auth";
 import { Link } from "react-router-dom";
 import UserType from "./pages/UserType/UserType";
 import { Route } from "react-router-dom";
-import { Layout, Menu, Breadcrumb } from "antd";
+import { Layout } from "antd";
 import Nav from "./pages/Nav/Nav";
 import SignUp from './components/auth/SignUp/SignUp'
 import Login from './components/auth/Login/Login'
@@ -79,6 +78,7 @@ class App extends React.Component {
             <UserType user={this.state.user}/>
           }/>
           </Content>
+          <Footer style={{ textAlign: 'center' }}>cargo.io ©2021 Created by Hadi</Footer>
         </Layout>
       </div>
     );

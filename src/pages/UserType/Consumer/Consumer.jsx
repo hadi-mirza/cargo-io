@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
 import "antd/dist/antd.css";
 import requestService from '../../../utils/requestService'
 import {
@@ -22,42 +21,22 @@ constructor() {
     date: ''
   };
 }
-  
 
-  // handleChange = (e) => {
-  //   // this.props.updateMessage('');
-  //   console.log(e)
-  //   // this.setState({
-  //   //   [e.target.name]: e.target.value
-  //   // });
-  // }
+onFinish = async (values) => {
+  console.log('Success:', values);
+  // values.preventDefault;
+  try {
+    await requestService.addRequest(values);
+    console.log('await functions have ran')
+    // this.props.history.push('/');
+  } catch (err) {
+    console.log(err)
+  }
+};
 
-  // handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   try {
-  //     await userService.signup(this.state);
-  //     this.props.handleSignup()
-  //     this.props.history.push('/');
-  //   } catch (err) {
-  //     this.props.updateMessage(err.message);
-  //   }
-  // }
-
-  onFinish = async (values) => {
-    console.log('Success:', values);
-    // values.preventDefault;
-    try {
-      await requestService.addRequest(values);
-      console.log('await functions have ran')
-      // this.props.history.push('/');
-    } catch (err) {
-      console.log(err)
-    }
-  };
-
-  onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
-  };
+onFinishFailed = (errorInfo) => {
+  console.log('Failed:', errorInfo);
+};
 
   render() {
     return (
