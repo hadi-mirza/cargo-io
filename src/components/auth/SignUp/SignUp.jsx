@@ -15,7 +15,6 @@ class SignupForm extends Component {
   
 
   handleChange = (e) => {
-    this.props.updateMessage('');
     this.setState({
       [e.target.name]: e.target.value
     });
@@ -28,7 +27,7 @@ class SignupForm extends Component {
       this.props.handleSignup()
       this.props.history.push('/');
     } catch (err) {
-      this.props.updateMessage(err.message);
+      console.log(err)
     }
   }
 
