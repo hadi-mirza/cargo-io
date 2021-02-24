@@ -44,8 +44,10 @@ class App extends React.Component {
               exact
               path="/"
               render={({ history }) => (
-                <div>
+                <div className="main">
                   <img src={banner} />
+                  <br />
+                  <br />
                   <h1>The cargo.io Solution</h1>
                   <p>This app is designed to connect freight vehicle owners to everyday users for delivery of common items. Let's say you're browsing Kijiji and find a great deal on an antique table but have no way to transport it to your location. Cargo.io provides you with a seamless process of finding an appropriate vehicle to pickup and deliver the product to your desired location at your specified time. Cargo.io eliminates the extra cost of delivery fees and tentative delivery times given by retail stores.</p>
                   </div>

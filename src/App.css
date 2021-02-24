@@ -15,14 +15,18 @@
 }
 
 #logo-link:hover {
-  color: rgb(243, 143, 61);
+  color: rgb(255, 136, 0);
 }
 
 #profile {
   float: right;
 }
 
-img {
-  margin: 0 auto;
-  width: 50%;
+.main {
+  margin: 10px auto;
+}
+
+.main img {
+  margin: auto 70px;
+width: 80vw;
 }
