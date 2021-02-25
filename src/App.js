@@ -19,7 +19,7 @@ class App extends React.Component {
     super();
     this.state = {
       user: userService.getUser(),
-      message: "",
+      message: null,
       pickupDetail: ""
     };
   }
@@ -41,6 +41,10 @@ class App extends React.Component {
     this.setState({message: msg})
   }
 
+  removeMessage = () => {
+    this.setState({message: ""})
+  }
+
   render() {
     return (
       <div className="App">
@@ -49,7 +53,7 @@ class App extends React.Component {
             <div className="logo">
               <Link id="logo-link" to="/"><code>cargo.io</code></Link>
             </div>
-            <Nav user={this.state.user} handleLogout={this.handleLogout}/>
+            <Nav user={this.state.user} handleLogout={this.handleLogout} removeMessage={this.removeMessage}/>
           </Header>
           <Content style={{margin: '0 auto', padding: '50px' }}>
             {this.state.message ? <Alert type="success" message={this.state.message} banner /> : null}
@@ -89,7 +93,7 @@ class App extends React.Component {
               )}
             />
             <Route exact path="/request-pickup" render={({ history }) => 
-              <UserType user={this.state.user} history={history}/>
+              <UserType user={this.state.user} history={history} />
           }/>
             <Route exact path="/request-pickup/confirm" render={({ history }) => 
               <ConfirmPickup history={history}/>

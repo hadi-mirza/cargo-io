@@ -5,7 +5,7 @@ import Consumer from './Consumer/Consumer'
 function UserType(props) {
     let userType = props.user.userType === 'consumer' ?
     <div>
-        <Consumer history={props.history}/>
+        <Consumer history={props.history} removeMessage={props.removeMessage}/>
     </div>
     :
     <div>
