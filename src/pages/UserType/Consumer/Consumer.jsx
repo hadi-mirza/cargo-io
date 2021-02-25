@@ -9,6 +9,9 @@ import {
   Cascader,
   DatePicker,
 } from "antd";
+import { Route } from "react-router-dom";
+import ConfirmPickup from './ConfirmPickup/ConfirmPickup'
+const { Option } = Select;
 
 class Consumer extends React.Component {
 constructor() {
@@ -18,7 +21,9 @@ constructor() {
     pickupType: '',
     itemType: '',
     itemDesc: '',
-    date: ''
+    date: '',
+    pickupLocation: '',
+    formSubmitted: false
   };
 }
 
@@ -28,7 +33,8 @@ onFinish = async (values) => {
   try {
     await requestService.addRequest(values);
     console.log('await functions have ran')
-    // this.props.history.push('/');
+    this.setState({formSubmitted: true})
+    this.props.history.push('/request-pickup/');
   } catch (err) {
     console.log(err)
   }
@@ -136,15 +142,83 @@ onFinishFailed = (errorInfo) => {
         <Form.Item name="itemDesc" label="Short description of item(s)">
           <Input />
         </Form.Item>
+
         <Form.Item name="date" label="Please choose a date if this item is set for scheduled pickup. Choose Today if you want it picked up ASAP" >
           <DatePicker />
         </Form.Item>
+
+        <Form.Item
+        name="pickupLocation"
+        label="Pickup Location"
+        rules={[
+          { type: 'array', required: true, message: 'Please select your pickup location!' },
+        ]}
+      >
+        <Cascader options={[
+  {
+    value: 'ontario',
+    label: 'Ontario',
+    children: [
+      {
+        value: 'toronto',
+        label: 'Toronto',
+        children: [
+          {
+            value: 'city of toronto',
+            label: 'Toronto',
+          },
+          {
+            value: 'greater toronto',
+            label: 'Greater Toronto Area',
+          },
+        ],
+      },
+      {
+        value: 'hamilton',
+        label: 'Hamilton',
+        // children: [
+        //   {
+        //     value: 'durham region',
+        //     label: 'Durham Region',
+        //   },
+        // ],
+      },
+      {
+        value: 'barrie',
+        label: 'Barrie',
+        // children: [
+        //   {
+        //     value: 'durham region',
+        //     label: 'Durham Region',
+        //   },
+        // ],
+      },
+    ],
+  },
+  {
+    value: 'quebec',
+    label: 'Quebec',
+    children: [
+      {
+        value: 'montreal',
+        label: 'Montreal',
+      },
+      {
+        value: 'quebec city',
+        label: 'Quebec City',
+      },
+    ],
+  },
+]} />
+      </Form.Item>
+
         <Form.Item>
         <Button type="primary" htmlType="submit">
           Submit
         </Button>
         </Form.Item>
       </Form>
+
       </div>
     )
   }

@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import userService from "./utils/userService";
+import requestService from './utils/requestService'
 import { Link } from "react-router-dom";
 import UserType from "./pages/UserType/UserType";
 import { Route } from "react-router-dom";
@@ -9,6 +10,7 @@ import Nav from "./pages/Nav/Nav";
 import SignUp from './components/auth/SignUp/SignUp'
 import Login from './components/auth/Login/Login'
 import banner from './media/home-banner.png'
+import ConfirmPickup from './pages/UserType/Consumer/ConfirmPickup/ConfirmPickup'
 
 const { Header, Content, Footer } = Layout;
 
@@ -17,7 +19,8 @@ class App extends React.Component {
     super();
     this.state = {
       user: userService.getUser(),
-      message: ""
+      message: "",
+      pickupDetail: ""
     };
   }
 
@@ -37,7 +40,6 @@ class App extends React.Component {
   updateMessage = (msg) => {
     this.setState({message: msg})
   }
-
 
   render() {
     return (
@@ -87,7 +89,10 @@ class App extends React.Component {
               )}
             />
             <Route exact path="/request-pickup" render={({ history }) => 
-            <UserType user={this.state.user}/>
+              <UserType user={this.state.user} history={history}/>
+          }/>
+            <Route exact path="/request-pickup/confirm" render={({ history }) => 
+              <ConfirmPickup history={history}/>
           }/>
           </Content>
           <Footer style={{ textAlign: 'center' }}>cargo.io ©2021 Created by Hadi</Footer>
