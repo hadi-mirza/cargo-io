@@ -1,5 +1,5 @@
 import React from 'react'
-import { List } from 'antd';
+import { List, Button } from 'antd';
 
 
 function ConfirmPickup(props) {
@@ -42,7 +42,9 @@ function ConfirmPickup(props) {
       </List.Item>
     )}
   />
-  <p>Track Request</p>
+      <Button type="primary" htmlType="submit">
+      Track Request
+    </Button>
         </div>
     )
 }
