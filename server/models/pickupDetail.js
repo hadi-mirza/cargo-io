@@ -22,6 +22,10 @@ var newRequestSchema = new mongoose.Schema({
         type:Date,
         required:true,
     },
+    pickupLocation:[{
+        type:String,
+        required:true,
+    }],
 });
 
 //Export the model

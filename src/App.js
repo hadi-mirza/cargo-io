@@ -1,14 +1,16 @@
 import "./App.css";
 import React from "react";
 import userService from "./utils/userService";
+import requestService from './utils/requestService'
 import { Link } from "react-router-dom";
 import UserType from "./pages/UserType/UserType";
 import { Route } from "react-router-dom";
-import { Layout } from "antd";
+import { Layout, Alert } from "antd";
 import Nav from "./pages/Nav/Nav";
 import SignUp from './components/auth/SignUp/SignUp'
 import Login from './components/auth/Login/Login'
 import banner from './media/home-banner.png'
+import ConfirmPickup from './pages/UserType/Consumer/ConfirmPickup/ConfirmPickup'
 
 const { Header, Content, Footer } = Layout;
 
@@ -17,6 +19,8 @@ class App extends React.Component {
     super();
     this.state = {
       user: userService.getUser(),
+      message: "",
+      pickupDetail: ""
     };
   }
 
@@ -28,6 +32,15 @@ class App extends React.Component {
     this.setState({ user: userService.getUser() });
   };
 
+  handleLogout = () => {
+    localStorage.removeItem('token')
+    this.setState({user:null})
+  }
+
+  updateMessage = (msg) => {
+    this.setState({message: msg})
+  }
+
   render() {
     return (
       <div className="App">
@@ -36,9 +49,10 @@ class App extends React.Component {
             <div className="logo">
               <Link id="logo-link" to="/"><code>cargo.io</code></Link>
             </div>
-            <Nav user={this.state.user} />
+            <Nav user={this.state.user} handleLogout={this.handleLogout}/>
           </Header>
           <Content style={{margin: '0 auto', padding: '50px' }}>
+            {this.state.message ? <Alert type="success" message={this.state.message} banner /> : null}
           <Route
               exact
               path="/"
@@ -75,7 +89,10 @@ class App extends React.Component {
               )}
             />
             <Route exact path="/request-pickup" render={({ history }) => 
-            <UserType user={this.state.user}/>
+              <UserType user={this.state.user} history={history}/>
+          }/>
+            <Route exact path="/request-pickup/confirm" render={({ history }) => 
+              <ConfirmPickup history={history}/>
           }/>
           </Content>
           <Footer style={{ textAlign: 'center' }}>cargo.io ©2021 Created by Hadi</Footer>

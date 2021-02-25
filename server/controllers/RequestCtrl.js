@@ -41,7 +41,8 @@ async function addRequest(req,res) {
             pickupType: req.body.pickupType,
             itemType: req.body.itemType,  
             itemDesc: req.body.itemDesc,
-            date: req.body.date
+            date: req.body.date,
+            pickupLocation: req.body.pickupLocation
         })
         newRequest.save()
         res.json({message: "added a pickup detail"})
@@ -56,9 +57,19 @@ async function addRequest(req,res) {
     
 }
 
+async function show(req,res) {
+    alert('controller hit')
+// try {
+//     const pickupDetail = await importDetails.findById(req.params.id);
+//     res.json(pickupDetail)
+// } catch {
+//     res.json({error: err})
+// }
+}
+
 module.exports = {
     allRequests,
     seed,
     addRequest,
-
+    show,
 }
