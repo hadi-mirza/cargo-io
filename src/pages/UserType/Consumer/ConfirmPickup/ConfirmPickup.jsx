@@ -1,36 +1,38 @@
 import React from 'react'
 import { List } from 'antd';
 
-const data = [
-    {
-      title: 'Pickup Time',
-      desc: 'ASAP or schedule'
-    },
-    {
-      title: 'Pickup From',
-    },
-    {
-      title: 'Item Type',
-    },
-    {
-      title: 'Item Description',
-    },
-    {
-        title: 'Pickup Date',
-    },
-    {
-        title: 'Pickup Location',
-    },
-  ];
 
-
-function ConfirmPickup() {
+function ConfirmPickup(props) {
     return (
         <div className="confirm">
-            <p>Confirm PickUp</p>
             <List
     itemLayout="horizontal"
-    dataSource={data}
+    dataSource={[
+        {
+          title: 'Pickup Time',
+          desc: props.when
+        },
+        {
+          title: 'Pickup From',
+          desc: props.pickupType
+        },
+        {
+          title: 'Item Type',
+          desc: props.itemType
+        },
+        {
+          title: 'Item Description',
+          desc: props.itemDesc
+        },
+        {
+            title: 'Pickup Date',
+            desc: props.date
+        },
+        {
+            title: 'Pickup Location',
+            desc: `Located in ${props.pickupLocation[0]}`
+        },
+      ]}
     renderItem={item => (
       <List.Item>
         <List.Item.Meta
@@ -40,6 +42,7 @@ function ConfirmPickup() {
       </List.Item>
     )}
   />
+  <p>Track Request</p>
         </div>
     )
 }
