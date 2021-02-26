@@ -10,7 +10,7 @@ async function addRequest(newRequest) {
     if (fetchResult.ok) {
         return await fetchResult.json()
     }
-}   
+}
 
  export default {
      addRequest,

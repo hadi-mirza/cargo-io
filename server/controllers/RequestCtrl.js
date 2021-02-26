@@ -44,12 +44,12 @@ async function addRequest(req,res) {
             date: req.body.date,
             pickupLocation: req.body.pickupLocation
         })
-        newRequest.save()
-        res.json({message: "added a pickup detail"})
+        let newDoc = await newRequest.save()
         let currentUser = await importUsers.findById(req.user)
         currentUser.requests.push(newRequest._id)
         // console.log(currentUser.requests)
         currentUser.save()
+        res.json({message: "added a pickup detail", newDoc} )
     } catch(error) {
         console.log(error)
         res.json({error: 'error adding request'})
@@ -58,7 +58,7 @@ async function addRequest(req,res) {
 }
 
 async function show(req,res) {
-    alert('controller hit')
+    console.log('controller hit')
 // try {
 //     const pickupDetail = await importDetails.findById(req.params.id);
 //     res.json(pickupDetail)
