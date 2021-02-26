@@ -59,12 +59,12 @@ async function addRequest(req,res) {
 
 async function show(req,res) {
     console.log('controller hit')
-// try {
-//     const pickupDetail = await importDetails.findById(req.params.id);
-//     res.json(pickupDetail)
-// } catch {
-//     res.json({error: err})
-// }
+try {
+    const pickupDetail = await importDetails.findById(req.params.id);
+    res.json(pickupDetail)
+} catch {
+    res.json({error: err})
+}
 }
 
 module.exports = {

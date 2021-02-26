@@ -12,6 +12,18 @@ async function addRequest(newRequest) {
     }
 }
 
+async function show(newRequest) {
+    let endpoint = BASE_URL + 'request-pickup/:id'
+    let fetchResult = await fetch(endpoint, {
+      method: 'POST',
+      headers: new Headers({'Content-Type': 'application/json', 'Authorization': 'Bearer ' + localStorage.getItem('token')}),
+      body: JSON.stringify(newRequest)
+    })
+    if (fetchResult.ok) {
+        return await fetchResult.json()
+    }
+}
+
  export default {
      addRequest,
  }
