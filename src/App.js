@@ -11,6 +11,10 @@ import SignUp from './components/auth/SignUp/SignUp'
 import Login from './components/auth/Login/Login'
 import banner from './media/home-banner.png'
 import ConfirmPickup from './pages/UserType/Consumer/ConfirmPickup/ConfirmPickup'
+import Profile from './pages/Profile/Profile'
+import PickupDetail from './pages/PickupDetail/PickupDetail'
+import Map from './components/Map/Map';
+import { getDirections } from './utils/map';
 
 const { Header, Content, Footer } = Layout;
 
@@ -20,7 +24,9 @@ class App extends React.Component {
     this.state = {
       user: userService.getUser(),
       message: null,
-      pickupDetail: ""
+      pickupDetails: "",
+      lat: null,
+      lng: null,
     };
   }
 
@@ -43,6 +49,15 @@ class App extends React.Component {
 
   removeMessage = () => {
     this.setState({message: ""})
+  }
+
+  async componentDidMount() {
+    // Destructure the object returned from getCurrentLatLng()
+    const {lat, lng} = await getDirections();
+    this.setState({
+      lat,
+      lng,
+    });
   }
 
   render() {
@@ -97,6 +112,15 @@ class App extends React.Component {
           }/>
             <Route exact path="/request-pickup/confirm" render={({ history }) => 
               <ConfirmPickup history={history}/>
+          }/>
+            <Route exact path="/profile" render={({ history }) => 
+              <Profile user={this.state.user} history={history} />
+          }/>
+            <Route exact path="/request-pickup/:id" render={({ history }) => 
+            <div>
+              <PickupDetail history={history} />
+              <Map lat={this.state.lat} lng={this.state.lng}/>
+            </div>
           }/>
           </Content>
           <Footer style={{ textAlign: 'center' }}>cargo.io ©2021 Created by Hadi</Footer>

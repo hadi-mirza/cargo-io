@@ -17,11 +17,12 @@ class Consumer extends React.Component {
 constructor() {
   super()
   this.state = {
+    id: '',
     when: '',
     pickupType: '',
     itemType: '',
     itemDesc: '',
-    date: '',
+    date: null,
     pickupLocation: '',
     formSubmitted: false
   };
@@ -31,8 +32,9 @@ onFinish = async (values) => {
   console.log('Success:', values);
   // values.preventDefault;
   try {
-    await requestService.addRequest(values);
-    this.setState({when: values.when, pickupType: values.pickupType, itemType: values.itemType, itemDesc: values.itemDesc, date: values.itemDate, pickupLocation: values.pickupLocation, formSubmitted: true})
+    let response = await requestService.addRequest(values);
+    let responseId = response.newDoc._id
+    this.setState({ id: responseId, when: values.when, pickupType: values.pickupType, itemType: values.itemType, itemDesc: values.itemDesc, date: values.itemDate, pickupLocation: values.pickupLocation, formSubmitted: true})
     console.log('await functions have ran')
     this.props.history.push('/request-pickup/');
   } catch (err) {
@@ -222,7 +224,7 @@ children: [
   </div>
   :
   <div>
-    <ConfirmPickup when={this.state.when} pickupType={this.state.pickupType} itemType={this.state.itemType} itemDesc={this.state.itemDesc} date={this.state.date} pickupLocation={this.state.pickupLocation}/>
+    <ConfirmPickup id={this.state.id} when={this.state.when} pickupType={this.state.pickupType} itemType={this.state.itemType} itemDesc={this.state.itemDesc} date={this.state.date} pickupLocation={this.state.pickupLocation}/>
   </div>;
 
     return (
